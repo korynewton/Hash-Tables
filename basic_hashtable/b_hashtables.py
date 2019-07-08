@@ -24,7 +24,10 @@ class BasicHashTable:
 # Research and implement the djb2 hash function
 # '''
 def hash(string, max):
-    pass
+    hash = 5381
+    for item in string:
+        hash = ((hash << 5) + hash) + ord(item)
+    return hash & 0xFFFFFFFF % max
 
 
 # '''
@@ -70,5 +73,14 @@ def hash_table_retrieve(hash_table, key):
 # Testing()
 
 
-ht = BasicHashTable(4)
-print(ht.storage)
+ht = BasicHashTable(100)
+# print(ht.storage)
+print(hash('test', ht.capacity))
+print(hash('testfer', ht.capacity))
+print(hash('testfasf', ht.capacity))
+print(hash('testwfaa', ht.capacity))
+print(hash('tesfwt', ht.capacity))
+print(hash('tewfarst', ht.capacity))
+print(hash('tfweqest', ht.capacity))
+print(hash('tfweest', ht.capacity))
+print(hash('tfewest', ht.capacity))
