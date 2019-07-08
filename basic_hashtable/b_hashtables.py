@@ -15,7 +15,8 @@ class Pair:
 # '''
 class BasicHashTable:
     def __init__(self, capacity):
-        pass
+        self.storage = [None] * capacity
+        self.capacity = capacity
 
 
 # '''
@@ -53,17 +54,21 @@ def hash_table_retrieve(hash_table, key):
     pass
 
 
-def Testing():
-    ht = BasicHashTable(16)
+# def Testing():
+#     ht = BasicHashTable(16)
 
-    hash_table_insert(ht, "line", "Here today...\n")
+#     hash_table_insert(ht, "line", "Here today...\n")
 
-    hash_table_remove(ht, "line")
+#     hash_table_remove(ht, "line")
 
-    if hash_table_retrieve(ht, "line") is None:
-        print("...gone tomorrow (success!)")
-    else:
-        print("ERROR:  STILL HERE")
+#     if hash_table_retrieve(ht, "line") is None:
+#         print("...gone tomorrow (success!)")
+#     else:
+#         print("ERROR:  STILL HERE")
 
 
-Testing()
+# Testing()
+
+
+ht = BasicHashTable(4)
+print(ht.storage)
