@@ -83,14 +83,24 @@ def array_remove(array, element):
     else:
         print('error: ' + str(element) + ' not found')
 
-        # Remove the element in a given position and return it
-        # Then shift every element after that occurrance to fill the gap
+ # Remove the element in a given position and return it
+# Then shift every element after that occurrance to fill the gap
 
 
-def array_pop():
+def array_pop(array, index):
     # Throw an error if array is out of the current count
+    if index >= array.count:
+        print('error: out of bounds array_pop')
+        return None
     # Your code here
-    pass
+    return_value = array.elements[index]
+
+    for i in range(index + 1, array.count, 1):
+        array.elements[i-1] = array.elements[i]
+
+    array.count -= 1
+    array.elements[array.count] = None
+    return return_value
 
 
 # Utility to print an array
