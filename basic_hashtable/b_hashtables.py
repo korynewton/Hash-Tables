@@ -48,7 +48,12 @@ def hash_table_insert(hash_table, key, value):
 # If you try to remove a value that isn't there, print a warning.
 # '''
 def hash_table_remove(hash_table, key):
-    pass
+    hashed_value = hash(key, hash_table.capacity)
+    if hash_table.storage[hashed_value] == None:
+        print('Warning: No value at this key')
+        return
+    else:
+        hash_table.storage[hashed_value] = None
 
 
 # '''
@@ -56,8 +61,6 @@ def hash_table_remove(hash_table, key):
 
 # Should return None if the key is not found.
 # '''
-def hash_table_retrieve(hash_table, key):
-    pass
 
 
 # def Testing():
@@ -75,7 +78,6 @@ def hash_table_retrieve(hash_table, key):
 
 # Testing()
 
-
 ht = BasicHashTable(100)
 # print(ht.storage)
 # print(hash('test', ht.capacity))
@@ -87,7 +89,12 @@ ht = BasicHashTable(100)
 # print(hash('tfweqest', ht.capacity))
 # print(hash('tfweest', ht.capacity))
 # print(hash('tfewest', ht.capacity))
+
+hash_table_remove(ht, 'testing')
 hash_table_insert(ht, 'testing', 'is good')
-print(ht.storage[hash('testing', ht.capacity)])
-hash_table_insert(ht, 'testing', 'is very good')
-print(ht.storage[hash('testing', ht.capacity)])
+# print(ht.storage[hash('testing', ht.capacity)])
+# hash_table_insert(ht, 'testing', 'is very good')
+# print(ht.storage[hash('testing', ht.capacity)])
+
+print('after adding', hash_table_remove(ht, 'testing'))
+hash_table_remove(ht, 'testing')
