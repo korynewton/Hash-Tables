@@ -36,10 +36,10 @@ def hash(string, max):
 # If you are overwriting a value with a different key, print a warning.
 # '''
 def hash_table_insert(hash_table, key, value):
-    hashed_value = hash(key, hash_table.capacity)
-    if hash_table.storage[hashed_value]:
+    hashed_key = hash(key, hash_table.capacity)
+    if hash_table.storage[hashed_key]:
         print('warning: overwritting')
-    hash_table.storage[hashed_value] = Pair(hashed_value, value)
+    hash_table.storage[hashed_key] = Pair(hashed_key, value)
 
 
 # '''
@@ -48,12 +48,12 @@ def hash_table_insert(hash_table, key, value):
 # If you try to remove a value that isn't there, print a warning.
 # '''
 def hash_table_remove(hash_table, key):
-    hashed_value = hash(key, hash_table.capacity)
-    if hash_table.storage[hashed_value] == None:
+    hashed_key = hash(key, hash_table.capacity)
+    if hash_table.storage[hashed_key] == None:
         print('Warning: No value at this key')
         return
     else:
-        hash_table.storage[hashed_value] = None
+        hash_table.storage[hashed_key] = None
 
 
 # '''
@@ -62,23 +62,30 @@ def hash_table_remove(hash_table, key):
 # Should return None if the key is not found.
 # '''
 
-
-# def Testing():
-#     ht = BasicHashTable(16)
-
-#     hash_table_insert(ht, "line", "Here today...\n")
-
-#     hash_table_remove(ht, "line")
-
-#     if hash_table_retrieve(ht, "line") is None:
-#         print("...gone tomorrow (success!)")
-#     else:
-#         print("ERROR:  STILL HERE")
+def hash_table_retrieve(hash_table, key):
+    hashed_key = hash(key, hash_table.capacity)
+    if not hash_table.storage[hashed_key]:
+        return None
+    else:
+        return hash_table.storage[hashed_key].value
 
 
-# Testing()
+def Testing():
+    ht = BasicHashTable(16)
 
-ht = BasicHashTable(100)
+    hash_table_insert(ht, "line", "Here today...\n")
+
+    hash_table_remove(ht, "line")
+
+    if hash_table_retrieve(ht, "line") is None:
+        print("...gone tomorrow (success!)")
+    else:
+        print("ERROR:  STILL HERE")
+
+
+Testing()
+
+# ht = BasicHashTable(100)
 # print(ht.storage)
 # print(hash('test', ht.capacity))
 # print(hash('testfer', ht.capacity))
@@ -90,11 +97,17 @@ ht = BasicHashTable(100)
 # print(hash('tfweest', ht.capacity))
 # print(hash('tfewest', ht.capacity))
 
-hash_table_remove(ht, 'testing')
-hash_table_insert(ht, 'testing', 'is good')
+# hash_table_remove(ht, 'testing')
+# hash_table_insert(ht, 'testing', 'is good')
 # print(ht.storage[hash('testing', ht.capacity)])
 # hash_table_insert(ht, 'testing', 'is very good')
 # print(ht.storage[hash('testing', ht.capacity)])
 
-print('after adding', hash_table_remove(ht, 'testing'))
-hash_table_remove(ht, 'testing')
+# print('after adding', hash_table_remove(ht, 'testing'))
+# hash_table_remove(ht, 'testing')
+
+# ht = BasicHashTable(8)
+
+# hash_table_insert(ht, "key-0", "new-val-0")
+# return_value = hash_table_retrieve(ht, "key-0")
+# print('return value:', return_value)
