@@ -136,9 +136,9 @@ class TestFullHashTable(unittest.TestCase):
         return_value = hash_table_retrieve(ht, "key-9")
         self.assertTrue(return_value is None)
 
-    def hash_table_resize(self):
+    def test_hash_table_resize(self):
         ht = HashTable(8)
-
+        print('starting resize test ------------')
         hash_table_insert(ht, "key-0", "val-0")
         hash_table_insert(ht, "key-1", "val-1")
         hash_table_insert(ht, "key-2", "val-2")
@@ -151,6 +151,7 @@ class TestFullHashTable(unittest.TestCase):
         hash_table_insert(ht, "key-9", "val-9")
 
         ht = hash_table_resize(ht)
+        breakpoint()
 
         self.assertTrue(len(ht.storage) == 16)
 
