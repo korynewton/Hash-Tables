@@ -38,9 +38,10 @@ def hash(string, max):
 # '''
 def hash_table_insert(hash_table, key, value):
     hashed_key = hash(key, hash_table.capacity)
-    print("key:" + key + "index: ", hashed_key)
 
     item_to_store = LinkedPair(key, value)
+
+    item_at_index = hash_table.storage[hashed_key]
 
     # handle if value at index is None
     if hash_table.storage[hashed_key] is None:
@@ -48,19 +49,22 @@ def hash_table_insert(hash_table, key, value):
 
     # handle if there is a collision
     else:
-        node = hash_table.storage[hashed_key]
-        while node.next is not None:
-            node = node.next
+        while item_at_index:
+            if item_at_index.key == key:
+                item_at_index.value = value
+                return
+            elif item_at_index.next == None:
+                item_at_index.next = item_to_store
+                return
+            else:
+                item_at_index = item_at_index.next
 
-        node.next = item_to_store
 
 # '''
 # Fill this in.
 
 # If you try to remove a value that isn't there, print a warning.
 # '''
-
-
 def hash_table_remove(hash_table, key):
     pass
 
