@@ -28,7 +28,7 @@ def hash(string, max):
     hash = 5381
     for item in string:
         hash = ((hash << 5) + hash) + ord(item)
-    return hash & 0xFFFFFFFF % max
+    return hash % max
 
 
 # '''
@@ -38,6 +38,7 @@ def hash(string, max):
 # '''
 def hash_table_insert(hash_table, key, value):
     hashed_key = hash(key, hash_table.capacity)
+    print("key:" + key + "index: ", hashed_key)
 
     item_to_store = LinkedPair(key, value)
 
@@ -70,12 +71,20 @@ def hash_table_remove(hash_table, key):
 # Should return None if the key is not found.
 # '''
 def hash_table_retrieve(hash_table, key):
-    pass
+    hashed_key = hash(key, hash_table.capacity)
+
+    item_at_index = hash_table.storage[hashed_key]
+
+    while item_at_index:
+        if item_at_index.key == key:
+            return item_at_index.value
+        else:
+            item_at_index = item_at_index.next
+
+    else:
+        return None
 
 
-# '''
-# Fill this in
-# '''
 def hash_table_resize(hash_table):
     pass
 
